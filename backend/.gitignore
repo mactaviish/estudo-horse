@@ -1,3 +1,6 @@
 Win32
 __history
 __recovery
+*.identcache
+*.local
+*.res
