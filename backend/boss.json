@@ -7,6 +7,8 @@
 	"projects": [],
 	"dependencies": {
 		"github.com/hashload/horse": "^3.0.2",
+		"github.com/hashload/horse-basic-auth": "^1.2.2",
+		"github.com/hashload/horse-compression": "^1.1.7",
 		"github.com/hashload/jhonson": "^1.1.4"
 	}
 }
