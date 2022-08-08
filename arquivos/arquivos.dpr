@@ -4,7 +4,6 @@ program arquivos;
 
 {$R *.res}
 
-{$REGION 'uses'}
 uses
   Horse,
   Horse.Logger,
@@ -12,7 +11,6 @@ uses
   Horse.OctetStream,
   System.Classes,
   System.SysUtils;
-{$ENDREGION}
 
 var
   App: THorse;
