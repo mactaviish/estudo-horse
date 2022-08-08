@@ -4,17 +4,32 @@ program arquivos;
 
 {$R *.res}
 
+{$REGION 'uses'}
 uses
-  Horse, Horse.OctetStream, System.Classes, System.SysUtils;
+  Horse,
+  Horse.Logger,
+  Horse.Logger.Provider.LogFile,
+  Horse.OctetStream,
+  System.Classes,
+  System.SysUtils;
+{$ENDREGION}
 
 var
   App: THorse;
+  AHorseLoggerCfg: THorseLoggerLogFileConfig;
 
 begin
+
   App := THorse.Create;
   App.Port := 9000;
 
+  AHorseLoggerCfg := THorseLoggerLogFileConfig.New
+    .SetLogFormat('[${time}] | ${request_clientip} | ${request_method} | ${response_status}')
+    .SetDir(GetCurrentDir + '\Log');
+
   App.Use(OctetStream);
+  THorseLoggerManager.RegisterProvider(THorseLoggerProviderLogFile.New(AHorseLoggerCfg));
+  THorse.Use(THorseLoggerManager.HorseCallback);
 
   App.Get('/arquivos',
     procedure(AReq: THorseRequest; ARes: THorseResponse; ANext: TProc)
